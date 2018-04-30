@@ -19,7 +19,7 @@
 			server 127.0.0.1 down;
 		{{ end }}
 	{{ end }}
-	
+
 {{ end }}
 
 # If we receive X-Forwarded-Proto, pass it through; otherwise, pass along the
@@ -116,7 +116,7 @@ server {
 {{ end }}
 
 {{ range $opt, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
-{{ $parts := split $opt "=>"}}
+{{ $parts := split $opt "__"}}
 {{ $host := first $parts | trim }}
 {{ $dest := last $parts | trim }}
 {{ $destParts := split (when (ne $host $dest) $dest ":") ":" }}
